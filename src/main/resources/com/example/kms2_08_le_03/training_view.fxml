@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.kms2_08_le_03.TrainingController"
+            prefHeight="800.0" prefWidth="800.0">
+
+    <!-- Überschrift -->
+    <Label text="Schulung Eintragen" layoutX="200.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <!-- ID -->
+    <Label text="Mitarbeiter-ID:" layoutX="100.0" layoutY="100.0" />
+    <TextField fx:id="employeeIDField" layoutX="200.0" layoutY="100.0" prefWidth="200.0" promptText="ID Mitarbeiter" />
+
+    <!-- Schulung Name -->
+    <Label text="Schulungsname:" layoutX="100.0" layoutY="200.0" />
+    <TextField fx:id="trainingNameField" layoutX="200.0" layoutY="200.0" prefWidth="200.0" />
+
+    <!-- Schulung Datum -->
+    <Label text="Schulungsdatum:" layoutX="100.0" layoutY="300.0" />
+    <DatePicker fx:id="dateOfTrainingField" layoutX="200.0" layoutY="300.0" prefWidth="200.0" />
+
+
+    <!-- Button Hinzufügen -->
+    <Button text="Schulung hinzufügen" layoutX="200.0" layoutY="450.0" onAction="#handleAddVacation" />
+
+    <!-- Statuslabel  -->
+    <Label fx:id="statusLabel" layoutX="200.0" layoutY="500.0" text="" />
+
+</AnchorPane>

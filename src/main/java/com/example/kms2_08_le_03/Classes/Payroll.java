@@ -68,9 +68,6 @@ public class Payroll implements Database_Connectable{
 
 
 
-
-
-
     public void saveToDatabase() {
         try (Connection connection = Database_Connection.getConnection()) {
             String sql = "INSERT INTO gehaltsabrechnung (mitarbeiter_id, abrechnungsdatum, brutto_gehalt, steuer_abzug, netto_gehalt, steuersatz) VALUES (?, ?, ?, ?, ?, ?)";

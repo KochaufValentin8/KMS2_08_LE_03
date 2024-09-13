@@ -15,7 +15,7 @@ public class MainController {
     @FXML
     private Button adminButton;
 
-    // Öffnet das Mitarbeitermenü
+    // Mitarbeitermenü
     @FXML
     private void openMitarbeiterMenu() throws Exception {
         Stage stage = new Stage();
@@ -25,7 +25,7 @@ public class MainController {
         stage.show();
     }
 
-    // Öffnet das Adminmenü
+    // Adminmenü
     @FXML
     private void openAdminMenu() throws Exception {
         Stage stage = new Stage();

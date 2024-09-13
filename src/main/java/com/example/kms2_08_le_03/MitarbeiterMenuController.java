@@ -2,6 +2,7 @@ package com.example.kms2_08_le_03;
 import com.example.kms2_08_le_03.Classes.EmployeeTimes;
 import com.example.kms2_08_le_03.Classes.ShowTable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -29,8 +30,8 @@ public class MitarbeiterMenuController {
 
     List<Integer> idList = ShowTable.GetIds();
     EmployeeTimes newEmployeeTimes = new EmployeeTimes();
-    int idEmployee;
-    String[] list_Info_newEmployeeTimes = {"ID 0", "startwork 1", "endwork 2", "workdate 3", "startpause 4", "endpause 5"};
+    int idEmployee;                     //{"ID 0", "startwork 1", "endwork 2", "workdate 3", "startpause 4", "endpause 5"};
+    String[] list_Info_newEmployeeTimes = {"0", "0", "0", "0", "0", "0"};
 
 
 
@@ -62,26 +63,41 @@ public class MitarbeiterMenuController {
 
     @FXML
     public void startPause() {
+        if (list_Info_newEmployeeTimes[1] == "0"){
+            showAlert("Falsche eintragung", "Du musst dich zuerst in die Arbeit einschreiben!");
+        }
+        else {
         String pauseTimeStart = newEmployeeTimes.startPause();
         list_Info_newEmployeeTimes[4] = pauseTimeStart;
         mitarbeiterLabel.setText("Pause begonnen");
+        }
     }
 
     @FXML
     public void endePause() {
-        String pauseTimeEnd = newEmployeeTimes.endPause();
-        list_Info_newEmployeeTimes[5] = pauseTimeEnd;
-        mitarbeiterLabel.setText("Pause beendet");
+        if (list_Info_newEmployeeTimes[4] == "0"){
+            showAlert("Falsche eintragung", "Du musst dich zuerst in die Pause einschreiben!");
+        }
+        else {
+            String pauseTimeEnd = newEmployeeTimes.endPause();
+            list_Info_newEmployeeTimes[5] = pauseTimeEnd;
+            mitarbeiterLabel.setText("Pause beendet");
+        }
     }
 
     @FXML
     public void endeArbeit() {
-        String endWorkTime = newEmployeeTimes.endWork();
-        list_Info_newEmployeeTimes[2] = endWorkTime;
-        mitarbeiterLabel.setText("Arbeit beendet");
-        EmployeeTimes employeeTimesToSend = new EmployeeTimes(idEmployee, list_Info_newEmployeeTimes[1], list_Info_newEmployeeTimes[2], list_Info_newEmployeeTimes[3], list_Info_newEmployeeTimes[4], list_Info_newEmployeeTimes[5]);
-        employeeTimesToSend.saveToDatabase();
+        if (list_Info_newEmployeeTimes[1] == "0"){
+            showAlert("Falsche eintragung", "Du musst dich erst eintragen!");
+        }
+        else {
 
+            String endWorkTime = newEmployeeTimes.endWork();
+            list_Info_newEmployeeTimes[2] = endWorkTime;
+            mitarbeiterLabel.setText("Arbeit beendet");
+            EmployeeTimes employeeTimesToSend = new EmployeeTimes(idEmployee, list_Info_newEmployeeTimes[1], list_Info_newEmployeeTimes[2], list_Info_newEmployeeTimes[3], list_Info_newEmployeeTimes[4], list_Info_newEmployeeTimes[5]);
+            employeeTimesToSend.saveToDatabase();
+        }
 
     }
 
@@ -90,5 +106,13 @@ public class MitarbeiterMenuController {
         mitarbeiterLabel.setText("Zurück zum Hauptmenü");
         Stage stage = (Stage) mitarbeiterLabel.getScene().getWindow();
         stage.close();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

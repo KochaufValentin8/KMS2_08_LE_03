@@ -74,7 +74,7 @@ public class ShowTable {
             // SQL-Abfrage
             statement = connection.createStatement();
 
-            // Abfrage und Ergebnis vom SQL-String
+            // Abfrage und Ergebnis vom SQL string
             String sqlString = "SELECT id, gehalt FROM mitarbeiter";
             Map<Integer, Double> idsWithSalary = new HashMap<>();
 

@@ -1,9 +1,4 @@
 package com.example.kms2_08_le_03.Classes;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -47,7 +42,7 @@ public class Data_Processing {
     }
     public static int getTaxRate(double einkommen, NavigableMap<Double, Integer> taxrates) { //chatgpt super lösung
         // Den größten Schlüssel kleiner oder gleich dem Einkommen finden
-        Map.Entry<Double, Integer> entry = taxrates.floorEntry(einkommen);
+        Map.Entry<Double, Integer> entry = taxrates.floorEntry(einkommen); // ceilingEntry(); ist für den kleinsten finden
         return entry.getValue();
 
 

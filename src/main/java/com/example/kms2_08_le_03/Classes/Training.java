@@ -45,7 +45,7 @@ public class Training implements Database_Connectable {
             statement.setString(2, this.getTrainingName());
             statement.setString(3, this.getDate());
 
-            // SQL-Abfrage ausführen
+            // SQL abfrage ausführen
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Fehler beim Speichern der Schulung in die Datenbank: " + e.getMessage());

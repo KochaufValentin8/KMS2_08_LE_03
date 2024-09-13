@@ -9,9 +9,9 @@
     <VBox alignment="CENTER" spacing="15">
 
         <!-- Überschrift -->
-        <Label fx:id="adminLabel" text="Adminmenü" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <Label fx:id="adminLabel" text="Mitarbeiter Verwaltung" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
 
-        <!-- Buttons für die Admin-Menüoptionen -->
+        <!-- Buttons -->
         <Button text="Mitarbeiter hinzufügen" onAction="#handleAddEmployee" />
         <Button text="Alle Mitarbeiter anzeigen" onAction="#handleShowAllEmployees" />
         <Button text="Gehaltsabrechnung" onAction="#handlePayroll" />

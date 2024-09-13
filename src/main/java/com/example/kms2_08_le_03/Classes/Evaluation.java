@@ -48,7 +48,7 @@ public class Evaluation implements Database_Connectable {
             statement.setInt(3, this.getRating());
 
 
-            // SQL-Abfrage ausführen
+            // SQL abfrage ausführen
             statement.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Fehler beim Speichern der Schulung in die Datenbank: " + e.getMessage());
@@ -64,6 +64,6 @@ public class Evaluation implements Database_Connectable {
     private static String DateOfToday() {
         LocalDate heute = LocalDate.now();  // Heutiges Datum
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  // Formatter
-        return heute.format(formatter);  // Formatiertes Datum zurückgeben
+        return heute.format(formatter);  // formatiertes datum zurückgeben
     }
 }

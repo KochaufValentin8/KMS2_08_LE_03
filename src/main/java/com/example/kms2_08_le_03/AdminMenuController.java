@@ -9,16 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class AdminMenuController {
 
-    // FXML-Label für die Admin-Überschrift
+    // Überschrift
     @FXML
     private Label adminLabel;
 

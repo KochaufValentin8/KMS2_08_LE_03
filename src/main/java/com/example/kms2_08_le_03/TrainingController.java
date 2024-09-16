@@ -4,10 +4,7 @@ import com.example.kms2_08_le_03.Classes.ShowTable;
 import com.example.kms2_08_le_03.Classes.Training;
 import com.example.kms2_08_le_03.Classes.Vacation;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +24,8 @@ public class TrainingController {
     @FXML
     private Label statusLabel;
 
+    @FXML
+    private Button closeButton;
 
     @FXML
     private Button addButton;
@@ -45,22 +44,26 @@ public class TrainingController {
             int id = Integer.parseInt(employeeIDString);
             if (trainingName == null || trainingNameLengh < 2 || dateOfTraining == null || employeeIDString == "" || trainingName == "") {
                 statusLabel.setText("Bitte alle Felder ausfüllen.");
+                showAlert("Fehler!", "Bitte alle Felder ausfüllen!");
             }
 
             else if (!idList.contains(id)){
                     statusLabel.setText("Bitte Gültige ID eingeben!");
+                showAlert("Fehler!", "Bitte Gültige ID eingeben!");
                 }
 
             else if (trainingDate == "" || trainingDate == null){
                 statusLabel.setText("Bitte Gültiges Datum eingeben!");
+                showAlert("Fehler!", "Bitte Gültiges Datum eingeben!");
             }
             else{
                 Training.AddTraining(id, trainingName, trainingDate);
-                statusLabel.setText("Schulung: " + trainingName + " für :" + employeeIDString + " am: " + trainingDate + "eingetragen");
+                statusLabel.setText("Schulung: " + trainingName + " für :" + employeeIDString + " am: " + trainingDate + " eingetragen");
                 clearFields();}
 
         } catch (NumberFormatException e) {
             statusLabel.setText("Ungültige ID.");
+            showAlert("Fehler!", "Bitte Gültige ID eingeben!");
         }
 
     }
@@ -81,4 +84,22 @@ public class TrainingController {
         dateOfTrainingField.setValue(null);
 
     }
+
+    @FXML
+    private void handleCloseWindow() {
+        // Schließt das aktuelle Fenster
+        closeButton.getScene().getWindow().hide();
+    }
+
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+
+    }
+
+
 }

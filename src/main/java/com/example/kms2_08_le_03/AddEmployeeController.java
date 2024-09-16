@@ -3,10 +3,7 @@ package com.example.kms2_08_le_03;
 import com.example.kms2_08_le_03.Classes.Data_Processing;
 import com.example.kms2_08_le_03.Classes.Employee;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -55,14 +52,13 @@ public class AddEmployeeController {
         String department = employeeDepartmentField.getText();
 
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String birthDateString = birthDate.format(formatter);
-
-        double salaryDouble = Double.parseDouble(salary);
-
-        if (firstName.isEmpty() || lastName.isEmpty() || birthDate == null || address.isEmpty() || email.isEmpty() || salary.isEmpty() || department.isEmpty()) {
+        if (firstName.length()  < 3 || lastName.length()  < 3 || birthDate == null || address.length()  < 3 || email.length()  < 3 || salary.isEmpty() || department.length()  < 2) {
             statusLabel.setText("Bitte alle Felder ausfüllen.");
+            showAlert("Fehler", "Bitte Alle Felder ausfüllen!");
         } else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            double salaryDouble = Double.parseDouble(salary);
+            String birthDateString = birthDate.format(formatter);
             safeToDatabank(firstName, lastName, birthDateString, address, email, department, salaryDouble);
             statusLabel.setText("Mitarbeiter hinzugefügt: " + firstName + " " + lastName);
             clearFields();
@@ -84,4 +80,22 @@ public class AddEmployeeController {
         employeeSalaryField.clear();
         employeeDepartmentField.clear();
     }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private Button closeButton;
+
+    @FXML
+    private void handleCloseWindow() {
+        // Schließt das aktuelle Fenster
+        closeButton.getScene().getWindow().hide();
+    }
+
 }

@@ -33,4 +33,9 @@
     <!-- Statuslabel  -->
     <Label fx:id="statusLabel" layoutX="200.0" layoutY="500.0" text="" />
 
+    <!-- Button zum Schließen des Fensters -->
+    <Button fx:id="closeButton" text="Zurück" layoutX="350.0" layoutY="450.0" onAction="#handleCloseWindow" />
+
+
+
 </AnchorPane>

@@ -4,10 +4,7 @@ package com.example.kms2_08_le_03;
 import com.example.kms2_08_le_03.Classes.ShowTable;
 import com.example.kms2_08_le_03.Classes.Vacation;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +29,10 @@ public class VacationController {
     private Button addButton;
 
     @FXML
+    private Button closeButton;
+
+
+    @FXML
     private void handleAddVacation() {
         String employeeIDString = employeeIDField.getText();
 
@@ -45,16 +46,25 @@ public class VacationController {
             int id = Integer.parseInt(employeeIDString);
             if (startVacationDate == null || endVacationDate == null || employeeIDString == "") {
                 statusLabel.setText("Bitte alle Felder ausfüllen.");
+                showAlert("Fehler!", "Bitte alle Felder ausfüllen!");
             }
             if (!idList.contains(id)){
                     statusLabel.setText("Bitte Gültige ID eingeben!");
+                    showAlert("Fehler!", "Bitte Gültige ID eingeben!");
                 }
+            if (startVacationDate.isAfter(endVacationDate)){
+                statusLabel.setText("Der Urlaubsstart darf nicht nach dem Urlaubsende sein!");
+                showAlert("Fehler!", "Der Urlaubsstart darf nicht nach dem Urlaubsende sein!");
+            }
             String startVac = DateFormatter(startVacationDate);
             String endVac = DateFormatter(endVacationDate);
 
             if (endVac == "" || endVac == null || startVac == "" || startVac == null){
                 statusLabel.setText("Bitte Gültiges Datum eingeben!");
+                showAlert("Fehler!", "Bitte Gültiges Datum eingeben!");
             }
+
+
             else{
 
 
@@ -66,6 +76,7 @@ public class VacationController {
 
         } catch (NumberFormatException e) {
             statusLabel.setText("Ungültige ID.");
+            showAlert("Fehler!", "Bitte Gültige ID eingeben.");
         }
 
     }
@@ -86,4 +97,21 @@ public class VacationController {
         endVacationField.setValue(null);
 
     }
+
+
+    @FXML
+    private void handleCloseWindow() {
+        // Schließt das aktuelle Fenster
+        closeButton.getScene().getWindow().hide();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+
+    }
+
 }

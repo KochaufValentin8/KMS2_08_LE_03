@@ -30,7 +30,7 @@ public class AdminMenuController {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("addEmployee_view.fxml"));
             //stage.setTitle("Mitarbeitermenü");
-            stage.setScene(new Scene(root, 500, 500));
+            stage.setScene(new Scene(root, 500, 600));
             stage.show();
         } catch (IOException e) {
             System.out.println(e);
@@ -57,14 +57,15 @@ public class AdminMenuController {
     private void handlePayroll() {
         System.out.println("Gehaltsabrechnung");
         Map<Integer, Double> idWithSalary = ShowTable.GetIDandSalary();
-
+        int payrollCounter = 0;
         for (Map.Entry<Integer, Double> entry : idWithSalary.entrySet()) {
+            payrollCounter ++;
             Integer key = entry.getKey();
             Double value = entry.getValue();
             Payroll.MakePayRoll(key, value);
         }
 
-        showAlert("Gehaltsabrechnung", "Gehaltsabrechnung Abgeschlossen.");
+        showAlert("Gehaltsabrechnung", "Gehaltsabrechnung Abgeschlossen. Es wurden " + payrollCounter + " gehälter Abgerechnet.");
     }
 
     @FXML
@@ -72,7 +73,7 @@ public class AdminMenuController {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("vacation_view.fxml"));
-            stage.setScene(new Scene(root, 500, 400));
+            stage.setScene(new Scene(root, 500, 600));
             stage.show();
         } catch (IOException e) {
             System.out.println(e);
@@ -85,7 +86,7 @@ public class AdminMenuController {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("training_view.fxml"));
-            stage.setScene(new Scene(root, 500, 400));
+            stage.setScene(new Scene(root, 500, 600));
             stage.show();
         } catch (IOException e) {
             System.out.println(e);
@@ -98,7 +99,7 @@ public class AdminMenuController {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("evaluation_view.fxml"));
-            stage.setScene(new Scene(root, 500, 400));
+            stage.setScene(new Scene(root, 500, 600));
             stage.show();
         } catch (IOException e) {
             System.out.println(e);

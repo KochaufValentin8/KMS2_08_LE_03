@@ -21,7 +21,7 @@ public class MainController {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("mitarbeiter_view.fxml"));
         stage.setTitle("Mitarbeitermenü");
-        stage.setScene(new Scene(root, 500, 500));
+        stage.setScene(new Scene(root, 500, 600));
         stage.show();
     }
 
@@ -31,7 +31,7 @@ public class MainController {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("admin_view.fxml"));
         stage.setTitle("Adminmenü");
-        stage.setScene(new Scene(root, 500, 500));
+        stage.setScene(new Scene(root, 500, 600));
         stage.show();
     }
 }
